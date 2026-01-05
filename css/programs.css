@@ -1,0 +1,37 @@
+/* Programs page styles */
+.page-header{padding:80px 0;background:#222;color:#fff;text-align:center}
+.page-header.has-bg{
+  background: linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)),
+              url('../img/header-bg.jpg') center/cover no-repeat;
+}
+.page-header h1{margin:0 0 10px;color:#fff}
+.page-header p{margin:0;opacity:.85}
+
+.programs-section{padding:60px 0}
+.programs-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:30px}
+.program-card{background:#fff;border-radius:6px;box-shadow:0 10px 25px rgba(0,0,0,.06);overflow:hidden;display:flex;flex-direction:column}
+.program-image{width:100%;height:280px;object-fit:cover;display:block}
+.program-content{padding:24px;flex:1}
+.program-title{margin-top:0;margin-bottom:8px}
+.program-description{margin-bottom:16px;color:#555}
+.program-details h4{margin-top:16px;margin-bottom:6px}
+.program-details ul{padding-left:18px;margin:6px 0 10px}
+.program-details li{margin-bottom:6px}
+
+/* Buttons aligning with theme */
+.btn{display:inline-block;padding:10px 18px;border-radius:3px;font-weight:600;transition:all .2s ease;text-decoration:none}
+.btn-accent{background:#b68834;color:#fff}
+.btn-accent:hover{filter:brightness(.95)}
+.btn-primary{background:#b68834;color:#fff}
+.btn-secondary{background:transparent;color:#b68834;border:2px solid #b68834}
+.btn-large{padding:12px 22px}
+
+.cta-section{padding:60px 0;background:#f8f8f8;text-align:center}
+.cta-section h2{margin-bottom:10px}
+.cta-buttons .btn{margin:8px}
+
+/* Responsive */
+@media (max-width: 991px){
+  .programs-grid{grid-template-columns:1fr}
+  .program-image{height:220px}
+}

@@ -1,0 +1,232 @@
+/* Sponsor Form Styling - Matching Website Theme */
+
+/* Ensure sponsor photos are fully visible */
+.sponsors-photos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin: 40px 0;
+    padding: 0 20px;
+}
+
+.sponsor-photo {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sponsor-photo:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive image grid */
+@media (max-width: 991px) {
+    .sponsors-photos {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        padding: 0 15px;
+    }
+    
+    .sponsor-photo {
+        height: 220px;
+    }
+}
+
+@media (max-width: 640px) {
+    .sponsors-photos {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 10px;
+    }
+    
+    .sponsor-photo {
+        height: 200px;
+    }
+}
+
+.sponsorship-cta {
+    background: #fff;
+    padding: 60px 0;
+    margin-top: 60px;
+}
+
+.sponsor-form-container {
+    background: #fff;
+    padding: 30px;
+    border-radius: 25px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    margin: 40px auto;
+    border: 1px solid #e9ecef;
+}
+
+.sponsor-form {
+    max-width: 100%;
+}
+
+.sponsor-form .form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 0;
+    flex-wrap: wrap;
+}
+
+.sponsor-form .form-group {
+    flex: 1;
+    min-width: 250px;
+    margin-bottom: 25px;
+}
+
+.sponsor-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
+    font-size: 14px;
+}
+
+.sponsor-form input,
+.sponsor-form select,
+.sponsor-form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    background: #fff;
+    font-family: 'Poppins', sans-serif;
+}
+
+.sponsor-form input:focus,
+.sponsor-form select:focus,
+.sponsor-form textarea:focus {
+    outline: none;
+    border-color: #b68834;
+    box-shadow: 0 0 0 2px rgba(182, 136, 52, 0.1);
+}
+
+.sponsor-form select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+    padding-right: 35px;
+}
+
+.sponsor-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.sponsor-form button {
+    background: #b68834;
+    color: white;
+    padding: 12px 40px;
+    border: none;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: block;
+    margin: 20px auto 0;
+}
+
+.sponsor-form button:hover {
+    background: #a0762e;
+    transform: translateY(-1px);
+}
+
+/* Form validation styling */
+.sponsor-form input:invalid,
+.sponsor-form select:invalid {
+    border-color: #dc3545;
+}
+
+.sponsor-form input:valid,
+.sponsor-form select:valid {
+    border-color: #28a745;
+}
+
+/* Success message styling */
+.form-success-message {
+    background: #28a745;
+    color: white;
+    padding: 15px;
+    border-radius: 4px;
+    text-align: center;
+    margin-top: 15px;
+    font-weight: 500;
+}
+
+.form-error-message {
+    background: #dc3545;
+    color: white;
+    padding: 15px;
+    border-radius: 4px;
+    text-align: center;
+    margin-top: 15px;
+    font-weight: 500;
+}
+
+/* Mobile Responsive - Stack everything */
+@media (max-width: 768px) {
+    .sponsor-form-container {
+        padding: 20px;
+        margin: 30px 15px;
+    }
+    
+    .sponsor-form .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .sponsor-form .form-group {
+        min-width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    .sponsor-form button {
+        width: 100%;
+        margin: 15px 0 0;
+    }
+    
+    .sponsor-form input,
+    .sponsor-form select,
+    .sponsor-form textarea {
+        font-size: 16px; /* Prevent zoom on iOS */
+    }
+}
+
+/* Section styling to match website */
+.sponsorship-cta {
+    background: #fff;
+    padding: 60px 0;
+    margin-top: 60px;
+}
+
+.sponsorship-cta h2 {
+    color: #333;
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.sponsorship-cta p {
+    color: #666;
+    font-size: 16px;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 30px;
+    line-height: 1.5;
+}
