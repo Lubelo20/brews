@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Admin Panel | Brews of Opportunity</title>
+  <meta name="description" content="Admin panel for managing Brews of Opportunity submissions">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+  <link rel="stylesheet" href="css/linearicons.css">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/magnific-popup.css">
+  <link rel="stylesheet" href="css/nice-select.css">
+  <link rel="stylesheet" href="css/animate.min.css">
+  <link rel="stylesheet" href="css/owl.carousel.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/admin-style.css">
+</head>
+<body>
+
+  
+  <!-- Start Admin Area -->
+  <section class="admin-area section-gap">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          
+                    <div id="login-section" class="admin-card">
+            <div class="admin-card-header">
+              <h2><i class="fa fa-lock"></i> Admin Login</h2>
+              <p>Enter your admin credentials to access submissions</p>
+            </div>
+            <div class="admin-card-body">
+              <form id="login-form">
+                <div class="form-group">
+                  <label for="username"><i class="fa fa-user"></i> Username</label>
+                  <input type="text" id="username" class="form-control" placeholder="Enter username" required>
+                </div>
+                <div class="form-group">
+                  <label for="password"><i class="fa fa-lock"></i> Password</label>
+                  <div class="password-input-group">
+                    <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
+                    <button type="button" class="btn-toggle-password" onclick="togglePassword()">
+                      <i class="fa fa-eye" id="password-icon"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="form-actions">
+                  <button type="submit" class="primary-btn text-uppercase">
+                    <span class="lnr lnr-lock"></span> Sign In
+                  </button>
+                  <a href="contact.html" class="btn-back">
+                    <i class="fa fa-arrow-left"></i> Back to Contact
+                  </a>
+                </div>
+                <div id="login-error" class="alert alert-danger" style="display:none"></div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Admin Panel Section -->
+          <div id="admin-panel-section" class="admin-card hidden">
+            <div class="admin-card-header">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <h2><i class="fa fa-dashboard"></i> Admin Panel</h2>
+                  <p>Manage and view all submissions</p>
+                </div>
+                <button id="logout-btn" class="btn-logout">
+                  <i class="fa fa-sign-out"></i> Logout
+                </button>
+              </div>
+            </div>
+            <div class="admin-card-body">
+              
+              <!-- User Info -->
+              <div class="user-info">
+                <div class="user-avatar">
+                  <i class="fa fa-user-circle"></i>
+                </div>
+                <div class="user-details">
+                  <h4>Admin</h4>
+                  <p>System Administrator</p>
+                </div>
+              </div>
+
+              <!-- API Token Section -->
+              <div class="api-section">
+                <h3><i class="fa fa-cog"></i> API Configuration</h3>
+                <div class="form-row">
+                  <div class="col-md-8">
+                    <div class="form-group">
+                      <label for="api-token">API Token</label>
+                      <input type="text" id="api-token" class="form-control" placeholder="Enter API token (if required)">
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label>&nbsp;</label>
+                      <button id="load-submissions" class="primary-btn text-uppercase w-100">
+                        <span class="lnr lnr-download"></span> Load Submissions
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Stats Cards -->
+              <div class="stats-grid">
+                <div class="stat-card">
+                  <div class="stat-icon training">
+                    <i class="fa fa-graduation-cap"></i>
+                  </div>
+                  <div class="stat-info">
+                    <h3 id="training-count">0</h3>
+                    <p>Training Signups</p>
+                  </div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-icon sponsor">
+                    <i class="fa fa-handshake-o"></i>
+                  </div>
+                  <div class="stat-info">
+                    <h3 id="sponsor-count">0</h3>
+                    <p>Sponsor Enquiries</p>
+                  </div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-icon contact">
+                    <i class="fa fa-envelope"></i>
+                  </div>
+                  <div class="stat-info">
+                    <h3 id="contact-count">0</h3>
+                    <p>Contact Messages</p>
+                  </div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-icon newsletter">
+                    <i class="fa fa-newspaper-o"></i>
+                  </div>
+                  <div class="stat-info">
+                    <h3 id="newsletter-count">0</h3>
+                    <p>Newsletter Subscriptions</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Submissions Table -->
+              <div class="submissions-section">
+                <div class="section-header">
+                  <h3><i class="fa fa-list"></i> Recent Submissions</h3>
+                  <div class="filter-controls">
+                    <select id="type-filter" class="form-control">
+                      <option value="">All Types</option>
+                      <option value="training">Training</option>
+                      <option value="sponsor">Sponsor</option>
+                      <option value="contact">Contact</option>
+                      <option value="newsletter">Newsletter</option>
+                    </select>
+                  </div>
+                </div>
+                <div id="submissions-area">
+                  <div class="empty-state">
+                    <i class="fa fa-inbox"></i>
+                    <h4>No submissions loaded</h4>
+                    <p>Click "Load Submissions" to fetch data from the API</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Admin Area -->
+
+  <!-- Start Footer Area -->
+  <footer class="footer-area section-gap">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-5 col-md-6 col-sm-6">
+          <div class="single-footer-widget">
+            <h6>About Us</h6>
+            <p>
+              Empowering communities through coffee, one cup at a time. "Great things start with a small cup."
+            </p>
+            <p class="footer-text">
+              Copyright &copy;<script>document.write(new Date().getFullYear());</script> Brews of Opportunity | Powered by Wear Your Brand | Designed by Lubelo Tech Solutions
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-5 col-md-6 col-sm-6">
+          <div class="single-footer-widget">
+            <h6>Newsletter</h6>
+            <p>Stay update with our latest</p>
+            <div class="" id="mc_embed_signup">
+              <form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd40c3a&amp;id=92a4423d01" method="get" class="form-inline">
+                <div class="d-flex flex-row">
+                  <input class="form-control" name="EMAIL" placeholder="Enter Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Email'" required="" type="email">
+                  <button class="click-btn btn btn-default"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                </div>
+                <div style="position: absolute; left: -5000px;">
+                  <input name="b_1462626880ade1ac87bd40c3a_92a4423d01" tabindex="-1" value="" type="text">
+                </div>
+                <div class="info"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-6 col-sm-6 social-widget">
+          <div class="single-footer-widget">
+            <h6>Follow Us</h6>
+            <p>Let us be social</p>
+            <div class="footer-social d-flex align-items-center">
+              <a href="#"><i class="fa fa-facebook"></i></a>
+              <a href="#"><i class="fa fa-twitter"></i></a>
+              <a href="#"><i class="fa fa-dribbble"></i></a>
+              <a href="#"><i class="fa fa-behance"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- End Footer Area -->
+
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
+  <script src="js/easing.min.js"></script>
+  <script src="js/hoverIntent.js"></script>
+  <script src="js/superfish.min.js"></script>
+  <script src="js/jquery.ajaxchimp.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.sticky.js"></script>
+  <script src="js/jquery.nice-select.min.js"></script>
+  <script src="js/parallax.min.js"></script>
+  <script src="js/waypoints.min.js"></script>
+  <script src="js/jquery.counterup.min.js"></script>
+  <script src="js/main.js"></script>
+
+  <script>
+    // Toggle password visibility
+    function togglePassword() {
+      const passwordInput = document.getElementById('password');
+      const passwordIcon = document.getElementById('password-icon');
+      
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        passwordIcon.classList.remove('fa-eye');
+        passwordIcon.classList.add('fa-eye-slash');
+      } else {
+        passwordInput.type = 'password';
+        passwordIcon.classList.remove('fa-eye-slash');
+        passwordIcon.classList.add('fa-eye');
+      }
+    }
+
+    // Admin credentials (for development only)
+    const ADMIN_USERNAME = 'Admin';
+    const ADMIN_PASSWORD = 'Ndumash*15';
+
+    // DOM elements
+    const loginSection = document.getElementById('login-section');
+    const adminPanelSection = document.getElementById('admin-panel-section');
+    const loginForm = document.getElementById('login-form');
+    const loginError = document.getElementById('login-error');
+    const loadSubmissionsBtn = document.getElementById('load-submissions');
+    const submissionsArea = document.getElementById('submissions-area');
+    const logoutBtn = document.getElementById('logout-btn');
+    const typeFilter = document.getElementById('type-filter');
+
+    // Show/hide functions
+    function showAdminPanel() {
+      loginSection.classList.add('hidden');
+      adminPanelSection.classList.remove('hidden');
+    }
+
+    function showLogin() {
+      loginSection.classList.remove('hidden');
+      adminPanelSection.classList.add('hidden');
+    }
+
+    // Check if already logged in
+    if (sessionStorage.getItem('adminAuthenticated') === '1') {
+      showAdminPanel();
+    }
+
+    // Login handler
+    loginForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value;
+
+      if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+        sessionStorage.setItem('adminAuthenticated', '1');
+        showAdminPanel();
+        loginError.style.display = 'none';
+        loginForm.reset();
+      } else {
+        loginError.textContent = 'Invalid username or password';
+        loginError.style.display = 'block';
+      }
+    });
+
+    // Logout handler
+    logoutBtn.addEventListener('click', function() {
+      sessionStorage.removeItem('adminAuthenticated');
+      showLogin();
+    });
+
+    // Load submissions handler
+    loadSubmissionsBtn.addEventListener('click', async function() {
+      const token = document.getElementById('api-token').value.trim();
+      const url = window.location.origin + '/Brewss/api/submissions.php?action=list' + (token ? ('&token=' + encodeURIComponent(token)) : '');
+      
+      console.log('Fetching submissions from:', url); // Debug log
+      
+      submissionsArea.innerHTML = '<div class="loading-state"><i class="fa fa-spinner fa-spin"></i> Loading submissions...</div>';
+      
+      try {
+        const res = await fetch(url);
+        console.log('Response status:', res.status); // Debug log
+        console.log('Response ok:', res.ok); // Debug log
+        
+        if (res.status === 401) {
+          submissionsArea.innerHTML = '<div class="error-state"><i class="fa fa-exclamation-triangle"></i> Unauthorized - invalid token for API.</div>';
+          return;
+        }
+        if (!res.ok) {
+          submissionsArea.innerHTML = '<div class="error-state"><i class="fa fa-exclamation-triangle"></i> Error loading submissions: ' + res.statusText + '</div>';
+          return;
+        }
+        
+        const data = await res.json();
+        console.log('Response data:', data); // Debug log
+        if (!data.success) {
+          submissionsArea.innerHTML = '<div class="error-state"><i class="fa fa-exclamation-triangle"></i> API Error: ' + data.message + '</div>';
+          return;
+        }
+        
+        if (!data.data.length) {
+          submissionsArea.innerHTML = '<div class="empty-state"><i class="fa fa-inbox"></i> No submissions found.</div>';
+          updateStats([]);
+          return;
+        }
+        
+        displaySubmissions(data.data);
+        updateStats(data.data);
+        
+      } catch (error) {
+        console.error('Fetch error:', error); // Debug log
+        submissionsArea.innerHTML = '<div class="error-state"><i class="fa fa-exclamation-triangle"></i> Network error: ' + error.message + '<br><small>Please check:<br>1. XAMPP server is running<br>2. Database exists<br>3. API files are accessible</small></div>';
+      }
+    });
+
+    // Display submissions in table
+    function displaySubmissions(submissions) {
+      let html = '<div class="table-responsive"><table class="submissions-table"><thead><tr><th>Date/Time</th><th>Type</th><th>Name</th><th>Email</th><th>Phone</th><th>Details</th><th>Message</th></tr></thead><tbody>';
+      
+      submissions.forEach(s => {
+        const details = s.company || s.course_type || s.package_choice || '';
+        const typeIcon = getTypeIcon(s.type || '');
+        const typeBadge = `<span class="type-badge type-${s.type}">${typeIcon} ${s.type || ''}</span>`;
+        
+        html += '<tr>' +
+                '<td>' + formatDateTime(s.created_at || s.timestamp || '') + '</td>' +
+                '<td>' + typeBadge + '</td>' +
+                '<td>' + (s.name || s.full_name || s.contact_name || '') + '</td>' +
+                '<td>' + (s.email || '') + '</td>' +
+                '<td>' + (s.phone || '') + '</td>' +
+                '<td>' + (details ? escapeHtml(details) : '') + '</td>' +
+                '<td>' + (s.message ? escapeHtml(s.message.substring(0, 100)) + (s.message.length > 100 ? '...' : '') : '') + '</td>' +
+                '</tr>';
+      });
+      
+      html += '</tbody></table></div>';
+      submissionsArea.innerHTML = html;
+    }
+
+    // Update statistics
+    function updateStats(submissions) {
+      const stats = {
+        training: 0,
+        sponsor: 0,
+        contact: 0,
+        newsletter: 0
+      };
+      
+      submissions.forEach(s => {
+        if (stats.hasOwnProperty(s.type)) {
+          stats[s.type]++;
+        }
+      });
+      
+      document.getElementById('training-count').textContent = stats.training;
+      document.getElementById('sponsor-count').textContent = stats.sponsor;
+      document.getElementById('contact-count').textContent = stats.contact;
+      document.getElementById('newsletter-count').textContent = stats.newsletter;
+    }
+
+    // Get type icon
+    function getTypeIcon(type) {
+      const icons = {
+        training: '<i class="fa fa-graduation-cap"></i>',
+        sponsor: '<i class="fa fa-handshake-o"></i>',
+        contact: '<i class="fa fa-envelope"></i>',
+        newsletter: '<i class="fa fa-newspaper-o"></i>'
+      };
+      return icons[type] || '<i class="fa fa-file"></i>';
+    }
+
+    // Format date/time
+    function formatDateTime(dateStr) {
+      if (!dateStr) return '';
+      const date = new Date(dateStr);
+      return date.toLocaleString();
+    }
+
+    // Escape HTML
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    // Filter submissions
+    typeFilter.addEventListener('change', function() {
+      const filterValue = this.value;
+      const rows = document.querySelectorAll('.submissions-table tbody tr');
+      
+      rows.forEach(row => {
+        const typeCell = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
+        if (filterValue === '' || typeCell.includes(filterValue.toLowerCase())) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
